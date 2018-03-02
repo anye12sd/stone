@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>联系我们</title>
+    <link href="https://cdn.bootcss.com/Swiper/4.0.7/css/swiper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/common.css">
+    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/Swiper/4.0.7/js/swiper.min.js"></script>
+    <script src="../js/bmap.js"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=4ca16f3d1df25593713c88206ae09189"></script>
+</head>
+<body>
+<div class="topBar">
+    <div class="topBar_content">
+        <div class="topBar_content_title fl">公司名称</div>
+        <div class="tel_box fr">
+            <div class="tel_box_title">服务热线</div>
+            <div class="tel_box_num">0571-12345678</div>
+        </div>
+    </div>
+</div>
+<div class="indexBtn">
+    <ul>
+        <li><a href="../index.html">首页</a></li>
+        <li><a href="./product.html">产品展示</a></li>
+        <li><a href="./about.html">关于我们</a></li>
+        <li class="active"><a href="#">联系我们</a></li>
+    </ul>
+</div>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination swiper-pagination-white"></div>
+</div>
+<div class="product">
+    <div class="product_title_box">
+        <div class="product_title_eng">CONTRACT</div>
+        <div class="product_title">联系我们</div>
+    </div>
+    <div class="product_list">
+
+    </div>
+</div>
+<div class="contract_box">
+    <div class="contract_left">
+        <p class="company_title">公司名称</p>
+        <p class="telNum">电话：0571-12345678</p>
+        <div class="telNum"><p>移动电话：</p><p><span>(+86)13813813813 x先生</span><span>(+86)13813813813 x小姐</span></p></div>
+        <div class="company_address">地址：杭州市西湖区汽车西站</div>
+        <div class="map">
+            <div id="map-bg" style="height:158px;"></div>
+        </div>
+    </div>
+</div>
+<div class="footBar">
+    <div class="footBar_content">
+        <div class="footBar_content_title fl">公司名称</div>
+        <div class="right_box fr">
+            <div class="right_box_copyRight">2017-2018 xxxx 版权所有</div>
+            <div class="right_box_num">全国服务热线：13813813813   座机：0571-12345678</div>
+            <div class="right_box_address">地址：杭州市下城区浙一人民医院</div>
+            <div class="beian">备案号：浙ICP备17012261号-1</div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $(function(){
+        $.ajax({
+            type:"get",
+            url:"../json/banner.json",
+            dataType:"json",
+            success:function(data){
+                var str="";
+                for(var i =0;i<5;i++){
+                    if(data[i]){
+                        str+='<div class="swiper-slide">'+ '<img src="../img/'+data[i]+'">'+'</div>'
+                    }
+                }
+                $(".swiper-wrapper").append(str);
+                var swiper = new Swiper('.swiper-container', {
+                    autoplay:{
+                        stopOnLastSlide:false,
+                        delay:1500
+                    },
+                    effect: 'fade',
+                    spaceBetween: 30,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                });
+            }
+        })
+    })
+
+    var BMap = BMap
+    var mp = new BMap.Map('map-bg', { minZoom: 10, maxZoom: 19 })   // 缩放限制
+    mp.centerAndZoom(new BMap.Point(120.199826, 30.242253), 18)
+    mp.addControl(new BMap.MapTypeControl())   // 添加地图类型控件
+    mp.enableScrollWheelZoom() // 滚轮
+    var local = new BMap.LocalSearch(mp, {
+        renderOptions:{map: mp}
+    });
+    local.search("${detail.address!}");
+
+
+</script>
+</html>

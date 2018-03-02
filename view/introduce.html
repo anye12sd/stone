@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title class="html_title"></title>
+    <link href="https://cdn.bootcss.com/Swiper/4.0.7/css/swiper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/common.css">
+    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/Swiper/4.0.7/js/swiper.min.js"></script>
+</head>
+<body>
+<div class="topBar">
+    <div class="topBar_content">
+        <div class="topBar_content_title fl">公司名称</div>
+        <div class="tel_box fr">
+            <div class="tel_box_title">服务热线</div>
+            <div class="tel_box_num">0571-12345678</div>
+        </div>
+    </div>
+</div>
+<div class="indexBtn">
+    <ul>
+        <li><a href="../index.html">首页</a></li>
+        <li class="active"><a href="./product.html">产品展示</a></li>
+        <li><a href="./about.html">关于我们</a></li>
+        <li><a href="./contract.html">联系我们</a></li>
+    </ul>
+</div>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination swiper-pagination-white"></div>
+</div>
+<div class="product_img_box">
+    <div class="img_left fl">
+        <div class="img_box">
+            <img src="../img/8899556_1-16051G434490-L.jpeg" alt="">
+        </div>
+    </div>
+    <div class="text_right fl">
+        <div class="text_title"></div>
+        <div class="text_subtitle"></div>
+        <div class="introduce_box">
+            <div class="introduce_nav">
+                <ul>
+                    <li class="current" data-v="1">商品介绍</li>
+                    <li data-v="2">规格参数</li>
+                </ul>
+            </div>
+            <div class="introduce">
+                大理石
+            </div>
+            <div class="standard">
+                大理石
+            </div>
+        </div>
+    </div>
+    <div class="cl"></div>
+</div>
+<div class="footBar">
+    <div class="footBar_content">
+        <div class="footBar_content_title fl">公司名称</div>
+        <div class="right_box fr">
+            <div class="right_box_copyRight">2017-2018 xxxx 版权所有</div>
+            <div class="right_box_num">全国服务热线：13813813813   座机：0571-12345678</div>
+            <div class="right_box_address">地址：杭州市下城区浙一人民医院</div>
+            <div class="beian">备案号：浙ICP备17012261号-1</div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $(function(){
+        $.ajax({
+            type:"get",
+            url:"../json/banner.json",
+            dataType:"json",
+            success:function(data){
+                var str="";
+                for(var i =0;i<5;i++){
+                    if(data[i]){
+                        str+='<div class="swiper-slide">'+ '<img src="../img/'+data[i]+'">'+'</div>'
+                    }
+                }
+                $(".swiper-wrapper").append(str);
+                var swiper = new Swiper('.swiper-container', {
+                    autoplay:{
+                        stopOnLastSlide:false,
+                        delay:1500
+                    },
+                    effect: 'fade',
+                    spaceBetween: 30,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                });
+            }
+        })
+
+        $(".introduce_nav ul li").on("click",function(){
+            $(this).addClass("current").siblings().removeClass("current")
+            if($(this).attr("data-v")==1){
+                $(".standard").css("display","none");$(".introduce").css("display","block")
+            }else{
+                $(".standard").css("display","block");$(".introduce").css("display","none")
+            }
+        })
+
+        $.ajax({
+            type:"get",
+            url:"../json/product.json",
+            dataType:"json",
+            success:function(data){
+                var str="";
+                var id = window.location.href.split("=")[1];
+                for(var i in data){
+                    if(i == id){
+                        $(".text_title").text(data[i].name);
+                        $(".text_subtitle").text(data[i].subname);
+                        $(".introduce").text(data[i].introduce);
+                        $(".standard").text(data[i].standard);
+                    }
+                }
+                str+='<div class="cl"></div>'
+                $(".product_list").append(str);
+            }
+        })
+
+    })
+</script>
+</html>
