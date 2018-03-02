@@ -8,7 +8,7 @@
     <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/Swiper/4.0.7/js/swiper.min.js"></script>
     <script src="../js/bmap.js"></script>
-    <script src="http://api.map.baidu.com/api?v=2.0&ak=4ca16f3d1df25593713c88206ae09189"></script>
+    <script src="../js/map.js"></script>
 </head>
 <body>
 <div class="topBar">
@@ -101,11 +101,6 @@
     mp.centerAndZoom(new BMap.Point(120.199826, 30.242253), 18)
     mp.addControl(new BMap.MapTypeControl())   // 添加地图类型控件
     mp.enableScrollWheelZoom() // 滚轮
-    var local = new BMap.LocalSearch(mp, {
-        renderOptions:{map: mp}
-    });
-    local.search("${detail.address!}");
-
 
 </script>
 </html>
