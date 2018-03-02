@@ -28,13 +28,6 @@
 </div>
 <div class="swiper-container">
     <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <img src="../img/65bb23d72c47fc5a9b16d2efac9c37c4.jpg" alt="">
-        </div>
-        <div class="swiper-slide"></div>
-        <div class="swiper-slide"></div>
-        <div class="swiper-slide"></div>
-        <div class="swiper-slide"></div>
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination swiper-pagination-white"></div>
@@ -62,16 +55,33 @@
 </div>
 </body>
 <script>
-    var swiper = new Swiper('.swiper-container', {
-        autoplay:{
-            stopOnLastSlide:false
-        },
-        spaceBetween: 30,
-        effect: 'fade',
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-    });
+    $(function(){
+        $.ajax({
+            type:"get",
+            url:"json/banner.json",
+            dataType:"json",
+            success:function(data){
+                var str="";
+                for(var i =0;i<5;i++){
+                    if(data[i]){
+                        str+='<div class="swiper-slide">'+ '<img src="img/'+data[i]+'">'+'</div>'
+                    }
+                }
+                $(".swiper-wrapper").append(str);
+                var swiper = new Swiper('.swiper-container', {
+                    autoplay:{
+                        stopOnLastSlide:false,
+                        delay:1500
+                    },
+                    effect: 'fade',
+                    spaceBetween: 30,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                });
+            }
+        })
+    })
 </script>
 </html>
