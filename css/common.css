@@ -317,3 +317,13 @@ a{
     font-size: 14px;
     color: #666;
 }
+
+.about_content{
+    width: 960px;
+    margin: 0 auto;
+    font-size: 16px;
+    text-indent: 32px;
+    line-height: 1.5;
+    color: #666;
+    margin-top: 40px;
+}
