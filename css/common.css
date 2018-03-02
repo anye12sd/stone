@@ -325,5 +325,12 @@ a{
     text-indent: 32px;
     line-height: 1.5;
     color: #666;
+    text-align: center;
     margin-top: 40px;
+}
+.about_title{
+    text-indent: 0;
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 15px;
 }
