@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="Keywords" content="关键词1,关键词2">
+    <meta name="Description" content="关键词1,关键词2">
     <link href="https://cdn.bootcss.com/Swiper/4.0.7/css/swiper.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/common.css">
     <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
@@ -47,7 +49,6 @@
                 <p class="product_right_name a1">工地名称</p>
                 <p class="product_right_subname a2">使用石材</p>
                 <p class="product_right_text a3">
-                    我们专注于品牌设计与研究，设计总监来自于各4A广告公司有着10年的设计经验，在各行业有着丰富成熟的设计。
                 </p>
                 <p class="a4">
 
@@ -60,7 +61,6 @@
                 <p class="product_right_name a6">工地名称</p>
                 <p class="product_right_subname a7">使用石材</p>
                 <p class="product_right_text a8">
-                    我们专注于品牌设计与研究，设计总监来自于各4A广告公司有着10年的设计经验，在各行业有着丰富成熟的设计。
                 </p>
             </div>
         </div>
@@ -133,10 +133,12 @@
             success:function(data){
                 $(".a1").text(data[0].name);
                 $(".a2").text(data[0].material);
+                $(".a3").text(data[0].introduce);
                 $(".a4").append('<img src="./img/'+data[0].src+'" alt="">');
                 $(".a5").append('<img src="./img/'+data[1].src+'" alt="">');
                 $(".a6").text(data[1].name);
-                $(".a7").text(data[0].material);
+                $(".a7").text(data[1].material);
+                $(".a8").text(data[1].introduce);
             }
         })
     })
