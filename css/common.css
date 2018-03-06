@@ -187,6 +187,10 @@ a{
     text-align: center;
     margin-top: 70px;
 }
+.product_right_left img{
+    width: 325px;
+    height: 183px;
+}
 .product_explain{
     margin-top: 5px;
 }
