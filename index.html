@@ -55,7 +55,7 @@
             </div>
             <div class="product_right_left fl">
                 <p class="a5">
-                    
+
                 </p>
                 <p class="product_right_name a6">工地名称</p>
                 <p class="product_right_subname a7">使用石材</p>
@@ -130,13 +130,12 @@
             url:"./json/product.json",
             dataType:"json",
             success:function(data){
-                    $(".a1").text(data[0].name);
-                    $(".a2").text(data[0].material);
-                    $(".a4").append('<img src="./img/'+data[0].src+'" alt="">');
-                    $(".a5").append('<img src="./img/'+data[1].src+'" alt="">');
-                    $(".a6").text(data[1].name);
-                    $(".a7").text(data[0].material);
-                $(".introduce_box").append(str);
+                $(".a1").text(data[0].name);
+                $(".a2").text(data[0].material);
+                $(".a4").append('<img src="./img/'+data[0].src+'" alt="">');
+                $(".a5").append('<img src="./img/'+data[1].src+'" alt="">');
+                $(".a6").text(data[1].name);
+                $(".a7").text(data[0].material);
             }
         })
     })
