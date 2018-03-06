@@ -99,8 +99,9 @@
 <script>
     $(function(){
         $.ajax({
+            async:true,
             type:"get",
-            url:"json/banner.json",
+            url:"json/banner.js",
             dataType:"json",
             success:function(data){
                 var str="";
@@ -127,7 +128,7 @@
 
         $.ajax({
             type:"get",
-            url:"./json/product.json",
+            url:"./json/product.js",
             dataType:"json",
             success:function(data){
                 $(".a1").text(data[0].name);
