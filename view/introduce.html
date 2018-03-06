@@ -11,103 +11,62 @@
 <body>
 <div class="topBar">
     <div class="topBar_content">
-        <div class="topBar_content_title fl">公司名称</div>
+        <div class="topBar_content_title fl">铭禾石业</div>
         <div class="tel_box fr">
             <div class="tel_box_title">服务热线</div>
-            <div class="tel_box_num">0571-12345678</div>
+            <div class="tel_box_num">0574-89026566</div>
         </div>
     </div>
 </div>
 <div class="indexBtn">
     <ul>
         <li><a href="../index.html">首页</a></li>
-        <li class="active"><a href="./product.html">产品展示</a></li>
+        <li class="active"><a href="./product.html">案例展示</a></li>
         <li><a href="./about.html">关于我们</a></li>
         <li><a href="./contract.html">联系我们</a></li>
     </ul>
 </div>
-<div class="swiper-container">
-    <div class="swiper-wrapper">
-    </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination swiper-pagination-white"></div>
-</div>
-<div class="product_img_box">
-    <div class="img_left fl">
-        <div class="img_box">
-            <img src="../img/8899556_1-16051G434490-L.jpeg" alt="">
-        </div>
-    </div>
-    <div class="text_right fl">
-        <div class="text_title"></div>
-        <div class="text_subtitle"></div>
-        <div class="introduce_box">
-            <div class="introduce_nav">
-                <ul>
-                    <li class="current" data-v="1">商品介绍</li>
-                    <li data-v="2">规格参数</li>
-                </ul>
-            </div>
-            <div class="introduce">
-                大理石
-            </div>
-            <div class="standard">
-                大理石
-            </div>
-        </div>
-    </div>
-    <div class="cl"></div>
+<div class="introduce_box">
+    <!--<p>工地信息：<span>比梨花156号</span></p>-->
+    <!--<p>开工时间：<span>2018年5月16号</span></p>-->
+    <!--<p>所用石材：<span>大理石</span></p>-->
+    <!--<p>用户反馈：</p>-->
+    <!--<img src="../img/65bb23d72c47fc5a9b16d2efac9c37c4.jpg" alt="">-->
+    <!--<img src="../img/65bb23d72c47fc5a9b16d2efac9c37c4.jpg" alt="">-->
+    <!--<img src="../img/65bb23d72c47fc5a9b16d2efac9c37c4.jpg" alt="">-->
 </div>
 <div class="footBar">
     <div class="footBar_content">
-        <div class="footBar_content_title fl">公司名称</div>
-        <div class="right_box fr">
-            <div class="right_box_copyRight">2017-2018 xxxx 版权所有</div>
-            <div class="right_box_num">全国服务热线：13813813813   座机：0571-12345678</div>
-            <div class="right_box_address">地址：杭州市下城区浙一人民医院</div>
-            <div class="beian">备案号：浙ICP备17012261号-1</div>
+        <div class="footBar_content_contract">
+            <p>联系我们</p>
+            <p>地址：浙江省宁波市鄞州区环城南路1728号红星美凯龙二楼B-8032铭禾石业</p>
+            <p>邮编：315000</p>
+            <p>邮件：617794014@qq.com</p>
+        </div>
+        <div class="kefu">
+            <p>客服热线</p>
+            <p>057489026566</p>
+            <p>(工作时间 9:00-17:00)</p>
+        </div>
+        <div class="help">
+            <p>商家服务</p>
+            <p>平层装修</p>
+            <p>别墅装修</p>
+            <p>工程</p>
+            <p>专业大理石</p>
+        </div>
+        <div class="help">
+            <p>帮助信息</p>
+            <p>帮助中心</p>
+            <p>赎回投资</p>
+            <p>新手指引</p>
+            <p>安全保障</p>
         </div>
     </div>
 </div>
 </body>
 <script>
     $(function(){
-        $.ajax({
-            type:"get",
-            url:"../json/banner.json",
-            dataType:"json",
-            success:function(data){
-                var str="";
-                for(var i =0;i<5;i++){
-                    if(data[i]){
-                        str+='<div class="swiper-slide">'+ '<img src="../img/'+data[i]+'">'+'</div>'
-                    }
-                }
-                $(".swiper-wrapper").append(str);
-                var swiper = new Swiper('.swiper-container', {
-                    autoplay:{
-                        stopOnLastSlide:false,
-                        delay:1500
-                    },
-                    effect: 'fade',
-                    spaceBetween: 30,
-                    pagination: {
-                        el: '.swiper-pagination',
-                        clickable: true,
-                    },
-                });
-            }
-        })
-
-        $(".introduce_nav ul li").on("click",function(){
-            $(this).addClass("current").siblings().removeClass("current")
-            if($(this).attr("data-v")==1){
-                $(".standard").css("display","none");$(".introduce").css("display","block")
-            }else{
-                $(".standard").css("display","block");$(".introduce").css("display","none")
-            }
-        })
-
         $.ajax({
             type:"get",
             url:"../json/product.json",
@@ -117,17 +76,18 @@
                 var id = window.location.href.split("=")[1];
                 for(var i in data){
                     if(i == id){
-                        $(".text_title").text(data[i].name);
-                        $(".text_subtitle").text(data[i].subname);
-                        $(".introduce").text(data[i].introduce);
-                        $(".standard").text(data[i].standard);
+                        str+='<div class="introduce_box"> ';
+                        str+='<p>工地信息：<span>'+data[i].name+'</span></p> <p>开工时间：<span>'+data[i].time+'</span></p> <p>所用石材：<span>'+data[i].material+'</span></p> <p>用户反馈：</p>';
+                        for(var p in data[i].feedbackImg){
+                            //console.log(data[i].feedbackImg[p])
+                            str+='<img src="../img/'+data[i].feedbackImg[p]+'">'
+                        }
+                        str+='</div>'
                     }
                 }
-                str+='<div class="cl"></div>'
-                $(".product_list").append(str);
+                $(".introduce_box").append(str);
             }
         })
-
     })
 </script>
 </html>

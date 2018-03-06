@@ -13,10 +13,10 @@
 <body>
 <div class="topBar">
     <div class="topBar_content">
-        <div class="topBar_content_title fl">公司名称</div>
+        <div class="topBar_content_title fl">铭禾石业</div>
         <div class="tel_box fr">
             <div class="tel_box_title">服务热线</div>
-            <div class="tel_box_num">0571-12345678</div>
+            <div class="tel_box_num">0574-89026566</div>
         </div>
     </div>
 </div>
@@ -36,32 +36,57 @@
 </div>
 <div class="product">
     <div class="product_title_box">
-        <div class="product_title_eng">CONTRACT</div>
-        <div class="product_title">联系我们</div>
+        <div class="product_title_eng">联系我们</div>
     </div>
-    <div class="product_list">
+    <p class="product_text_chn">通过研究商业模式来定义品牌模式提供优秀的品牌整合解决方案，令品牌长远发展，更具竞争力</p>
+    <p class="product_text_eng">TO DEFINE THE BRAND MODEL BY STUDYING THE BUSINESS MODEL TO PROVIDE EXCELLENT BRAND INTEGRATION SOLUTIONS, SO THE BRANLONG-TERM DEVELOPMENT, MORE COMPETITIVE</p>
+</div>
+<div class="contract_box">
+    <div>
+        <img src="../accerts/AD0Ip4H4BRAEGAAgyZiYwwUo0vO6FDBaOFo.png" alt="">
+        <p>手机: 15869148736</p>
+        <p>座机:0574-89026566</p>
+    </div>
+    <div>
+        <img src="../accerts/AD0Ip4H4BRAEGAAgypiYwwUombifqgcwXTha.png" alt="">
+        <p>浙江省宁波市鄞州区环城南路东段1728号红星美凯龙二楼B-8032</p>
+    </div>
+    <div>
+        <p>邮箱：617794014@qq.com</p>
+    </div>
+</div>
+<div class="map">
+    <div id="map-bg" style="width:960px;height:400px;margin:0 auto">
 
     </div>
 </div>
-<div class="contract_box">
-    <div class="contract_left">
-        <p class="company_title">公司名称</p>
-        <p class="telNum">电话：0571-12345678</p>
-        <div class="telNum"><p>移动电话：</p><p><span>(+86)13813813813 x先生</span><span>(+86)13813813813 x小姐</span></p></div>
-        <div class="company_address">地址：杭州市西湖区汽车西站</div>
-        <div class="map">
-            <div id="map-bg" style="height:158px;"></div>
-        </div>
-    </div>
-</div>
+
 <div class="footBar">
     <div class="footBar_content">
-        <div class="footBar_content_title fl">公司名称</div>
-        <div class="right_box fr">
-            <div class="right_box_copyRight">2017-2018 xxxx 版权所有</div>
-            <div class="right_box_num">全国服务热线：13813813813   座机：0571-12345678</div>
-            <div class="right_box_address">地址：杭州市下城区浙一人民医院</div>
-            <div class="beian">备案号：浙ICP备17012261号-1</div>
+        <div class="footBar_content_contract">
+            <p>联系我们</p>
+            <p>地址：浙江省宁波市鄞州区环城南路1728号红星美凯龙二楼B-8032铭禾石业</p>
+            <p>邮编：315000</p>
+            <p>邮件：617794014@qq.com</p>
+        </div>
+        <div class="kefu">
+            <p>客服热线</p>
+            <p>057489026566</p>
+            <p>(工作时间 9:00-17:00)</p>
+        </div>
+        <div class="help">
+            <p>商家服务</p>
+            <p>平层装修</p>
+            <p>别墅装修</p>
+            <p>工程</p>
+            <p>专业大理石</p>
+        </div>
+        <div class="help">
+            <p>帮助信息</p>
+            <p>帮助中心</p>
+            <p>赎回投资</p>
+            <p>新手指引</p>
+            <p>安全保障</p>
         </div>
     </div>
 </div>
@@ -97,14 +122,41 @@
     })
 
     var BMap = BMap
-    var mp = new BMap.Map('map-bg', { minZoom: 10, maxZoom: 19 })   // 缩放限制
-    mp.centerAndZoom(new BMap.Point(120.199826, 30.242253), 18)
-    mp.addControl(new BMap.MapTypeControl())   // 添加地图类型控件
-    mp.enableScrollWheelZoom() // 滚轮
-    var pt = new BMap.Point(120.199826, 30.242253);
+    var map = new BMap.Map('map-bg')   // 缩放限制
+    map.centerAndZoom(new BMap.Point(121.6027683850, 29.8457507010), 18)
+    map.addControl(new BMap.MapTypeControl())   // 添加地图类型控件
+    map.enableScrollWheelZoom() // 滚轮
+    var pt = new BMap.Point(121.6027683850, 29.8457507010);
+    // 添加带有定位的导航控件
+    var navigationControl = new BMap.NavigationControl({
+        // 靠左上角位置
+        anchor: BMAP_ANCHOR_TOP_LEFT,
+        // LARGE类型
+        type: BMAP_NAVIGATION_CONTROL_LARGE,
+        // 启用显示定位
+        enableGeolocation: true
+    });
+    map.addControl(navigationControl);
+    // 添加定位控件
+    var geolocationControl = new BMap.GeolocationControl();
+    geolocationControl.addEventListener("locationSuccess", function(e){
+        // 定位成功事件
+        var address = '';
+        address += e.addressComponent.province;
+        address += e.addressComponent.city;
+        address += e.addressComponent.district;
+        address += e.addressComponent.street;
+        address += e.addressComponent.streetNumber;
+        alert("当前定位地址为：" + address);
+    });
+    geolocationControl.addEventListener("locationError",function(e){
+        // 定位失败事件
+        alert(e.message);
+    });
+    map.addControl(geolocationControl);
     var myIcon = new BMap.Icon("../accerts/Location_16.676056338028px_1194795_easyicon.net.png", new BMap.Size(16,23));
     var marker2 = new BMap.Marker(pt,{icon:myIcon});  // 创建标注
-    mp.addOverlay(marker2);
+    map.addOverlay(marker2);
 
 </script>
 </html>
